@@ -1,0 +1,884 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Flink window &amp; demo - guadazi-flink-wiki</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Flink 架构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Flink-runtime.html"><strong aria-hidden="true">1.1.</strong> Flink runtime</a></li><li class="chapter-item expanded "><a href="Flink-on-yarn.html"><strong aria-hidden="true">1.2.</strong> Flink-on-yarn</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.3.</strong> task chain</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.</strong> sharing slot group</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.5.</strong> task slot</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.6.</strong> CoLocationGroup</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.7.</strong> SlotSharingGroup</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.8.</strong> Flink state backend</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.9.</strong> Restart Strategies(重启策略)</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.10.</strong> Flink 2PC</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.11.</strong> Flink checkpoint与savepoint</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.12.</strong> Flink 反压</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.13.</strong> Flink 状态管理与TTL</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.14.</strong> Flink time</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.15.</strong> Flink timer</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.16.</strong> Flink window</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.17.</strong> Flink watermark</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.18.</strong> Flink-slot-sharing-group</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.19.</strong> Flink内存管理</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Flink API</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Flink-sink.html"><strong aria-hidden="true">2.1.</strong> Flink三种Sink模式: Append、Upsert和Retract</a></li><li class="chapter-item expanded "><a href="Flink-AsyncIO.html"><strong aria-hidden="true">2.2.</strong> Flink AsyncIO</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.3.</strong> Flink join: broadcast join、interval join、window join、cogroup</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Flink DataStream</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Flink-join.html"><strong aria-hidden="true">3.1.</strong> Flink join</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Flink SQL</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Flink-SQL-Join.html"><strong aria-hidden="true">4.1.</strong> Flink SQL join</a></li><li class="chapter-item expanded "><a href="Flink-SQL-Window.html" class="active"><strong aria-hidden="true">4.2.</strong> Flink window &amp; demo</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> Flink interval join</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> Flink temporal join</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.</strong> Flink broadcast join</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.6.</strong> Flink SQL join的状态管理</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.7.</strong> Flink SQL-window aggregate与group aggregate</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.8.</strong> Flink over window与TopN</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Flink SQL 原理</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Flink-SQL-Calcite.html"><strong aria-hidden="true">5.1.</strong> Calcite原理</a></li><li class="chapter-item expanded "><a href="Flink-SQL-codeGen.html"><strong aria-hidden="true">5.2.</strong> Flink SQL代码生成</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.3.</strong> Flink SQL原理与blink优化</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Flink metric</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Flink累加器和计数器:Accumulators &amp; Counters</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Flink CEP</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Flink Connectors</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> kudu connector</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> Flink devops</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">9.1.</strong> Flink-UI</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.2.</strong> Yarn、JM、TM配置与参数</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.3.</strong> 常见异常与解决方案</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.</strong> Flink实践</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">10.1.</strong> interval join实现outjoin</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.2.</strong> 双流join，一条流延迟</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.3.</strong> keyedState扩容</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.4.</strong> Flink-bloomfilter近似去重</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">guadazi-flink-wiki</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <hr />
+<p>title: &quot;Flink sql window&quot;
+layout: post
+date: 2021-04-12 19:47:00
+category: bigdata
+tags:</p>
+<ul>
+<li>Flink</li>
+<li>Flink-SQL</li>
+<li>window</li>
+</ul>
+<h2>share: false
+comments: true</h2>
+<p>flink窗口函数包含滚动窗口、滑动窗口、会话窗口和OVER窗口</p>
+<h2 id="flink-sql-窗口的基本概念与使用"><a class="header" href="#flink-sql-窗口的基本概念与使用">Flink SQL 窗口的基本概念与使用</a></h2>
+<h3 id="滚动窗口"><a class="header" href="#滚动窗口">滚动窗口</a></h3>
+<p>滚动窗口（TUMBLE）将每个元素分配到一个指定大小的窗口中。通常，滚动窗口有一个固定的大小，并且不会出现重叠。例如，如果指定了一个5分钟大小的滚动窗口，无限流的数据会根据时间划分为<code>[0:00 - 0:05)</code>、<code>[0:05, 0:10)</code>、<code>[0:10, 0:15)</code>等窗口。下图展示了一个30秒的滚动窗口。<br />
+<img src="_v_images/20210412125050690_701107302" alt="" />
+使用标识函数选出窗口的起始时间或者结束时间，窗口的时间属性用于下级Window的聚合。</p>
+<table><thead><tr><th>窗口标识函数</th><th>返回类型</th><th>描述</th></tr></thead><tbody>
+<tr><td><code>TUMBLE_START(time-attr, size-interval)</code></td><td>TIMESTAMP</td><td>返回窗口的起始时间（包含边界）。例如<code>[00:10, 00:15)</code> 窗口，返回<code>00:10</code> 。</td></tr>
+<tr><td><code>TUMBLE_END(time-attr, size-interval)</code></td><td>TIMESTAMP</td><td>返回窗口的结束时间（包含边界）。例如<code>[00:00, 00:15]</code>窗口，返回<code>00:15</code>。</td></tr>
+<tr><td><code>TUMBLE_ROWTIME(time-attr, size-interval)</code></td><td>TIMESTAMP(rowtime-attr)</td><td>返回窗口的结束时间（不包含边界）。例如<code>[00:00, 00:15]</code>窗口，返回<code>00:14:59.999</code> 。返回值是一个rowtime attribute，即可以基于该字段做时间属性的操作，例如，级联窗口只能用在基于Event Time的Window上</td></tr>
+<tr><td><code>TUMBLE_PROCTIME(time-attr, size-interval)</code></td><td>TIMESTAMP(rowtime-attr)</td><td>返回窗口的结束时间（不包含边界）。例如<code>[00:00, 00:15]</code>窗口，返回<code>00:14:59.999</code>。返回值是一个proctime attribute，即可以基于该字段做时间属性的操作，例如，级联窗口只能用在基于Processing Time的Window上</td></tr>
+</tbody></table>
+<p>TUMBLE window示例</p>
+<pre><code class="language-java">import org.apache.flink.api.common.typeinfo.TypeHint;
+import org.apache.flink.api.common.typeinfo.TypeInformation;
+import org.apache.flink.api.java.tuple.Tuple3;
+import org.apache.flink.streaming.api.TimeCharacteristic;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.timestamps.AscendingTimestampExtractor;
+import org.apache.flink.table.api.EnvironmentSettings;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+
+
+import java.sql.Timestamp;
+import java.util.Arrays;
+
+public class TumbleWindowExample {
+
+    public static void main(String[] args) throws Exception {
+
+        /**
+         * 1 注册环境
+         */
+        EnvironmentSettings mySetting = EnvironmentSettings
+                .newInstance()
+//                .useOldPlanner()
+                .useBlinkPlanner()
+                .inStreamingMode()
+                .build();
+
+        // 获取 environment
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        // 指定系统时间概念为 event time
+        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
+
+        StreamTableEnvironment tEnv = StreamTableEnvironment.create(env,mySetting);
+
+
+        // 初始数据
+        DataStream&lt;Tuple3&lt;Long, String,Integer&gt;&gt; log = env.fromCollection(Arrays.asList(
+                //时间 14:53:00
+                new Tuple3&lt;&gt;(1572591180_000L,&quot;xiao_ming&quot;,300),
+                //时间 14:53:09
+                new Tuple3&lt;&gt;(1572591189_000L,&quot;zhang_san&quot;,303),
+                //时间 14:53:12
+                new Tuple3&lt;&gt;(1572591192_000L, &quot;xiao_li&quot;,204),
+                //时间 14:53:21
+                new Tuple3&lt;&gt;(1572591201_000L,&quot;li_si&quot;, 208)
+                ));
+
+        // 指定时间戳
+        SingleOutputStreamOperator&lt;Tuple3&lt;Long, String, Integer&gt;&gt; logWithTime = log.assignTimestampsAndWatermarks(new AscendingTimestampExtractor&lt;Tuple3&lt;Long, String, Integer&gt;&gt;() {
+
+            @Override
+            public long extractAscendingTimestamp(Tuple3&lt;Long, String, Integer&gt; element) {
+                return element.f0;
+            }
+        });
+
+        // 转换为 Table
+        Table logT = tEnv.fromDataStream(logWithTime, &quot;t.rowtime, name, v&quot;);
+
+        Table result = tEnv.sqlQuery(&quot;SELECT TUMBLE_START(t, INTERVAL '10' SECOND) AS window_start,&quot; +
+                &quot;TUMBLE_END(t, INTERVAL '10' SECOND) AS window_end, SUM(v) FROM &quot;
+                + logT + &quot; GROUP BY TUMBLE(t, INTERVAL '10' SECOND)&quot;);
+
+        TypeInformation&lt;Tuple3&lt;Timestamp,Timestamp,Integer&gt;&gt; tpinf = new TypeHint&lt;Tuple3&lt;Timestamp,Timestamp,Integer&gt;&gt;(){}.getTypeInfo();
+        tEnv.toAppendStream(result, tpinf).print();
+
+        env.execute();
+    }
+
+
+}
+
+</code></pre>
+<p>sql逻辑，每十秒钟聚合<br />
+执行结果：</p>
+<pre><code class="language-shell">(2019-11-01 06:53:00.0,2019-11-01 06:53:10.0,603)  
+(2019-11-01 06:53:20.0,2019-11-01 06:53:30.0,208)  
+(2019-11-01 06:53:10.0,2019-11-01 06:53:20.0,204)
+</code></pre>
+<h3 id="滑动窗口"><a class="header" href="#滑动窗口">滑动窗口</a></h3>
+<p>滑动窗口（HOP），也被称作Sliding Window。不同于滚动窗口，滑动窗口的窗口可以重叠。</p>
+<p>滑动窗口有两个参数：slide和size。slide为每次滑动的步长，size为窗口的大小。</p>
+<ul>
+<li>slide &lt; size，则窗口会重叠，每个元素会被分配到多个窗口。</li>
+<li>slide = size，则等同于滚动窗口（TUMBLE）。</li>
+<li>slide &gt; size，则为跳跃窗口，窗口之间不重叠且有间隙。</li>
+</ul>
+<p>通常，大部分元素符合多个窗口情景，窗口是重叠的。因此，滑动窗口在计算移动平均数（moving averages）时很实用。例如，计算过去5分钟数据的平均值，每10秒钟更新一次，可以设置slide为10秒，size为5分钟。下图为您展示间隔为30秒，窗口大小为1分钟的滑动窗口。</p>
+<p><img src="_v_images/20210412125050182_1936746176" alt="滑动窗口" title="滑动窗口" /></p>
+<p>使用滑动窗口标识函数选出窗口的起始时间或者结束时间，窗口的时间属性用于下级Window的聚合。</p>
+<table><thead><tr><th>窗口标识函数</th><th>返回类型</th><th>描述</th></tr></thead><tbody>
+<tr><td><code>HOP_START（&lt;time-attr&gt;, &lt;slide-interval&gt;, &lt;size-interval&gt;）</code></td><td>TIMESTAMP</td><td>返回窗口的起始时间（包含边界）。例如<code>[00:10, 00:15)</code> 窗口，返回<code>00:10</code> 。</td></tr>
+<tr><td><code>HOP_END（&lt;time-attr&gt;, &lt;slide-interval&gt;, &lt;size-interval&gt;）</code></td><td>TIMESTAMP</td><td>返回窗口的结束时间（包含边界）。例如<code>[00:00, 00:15)</code> 窗口，返回<code>00:15</code>。</td></tr>
+<tr><td><code>HOP_ROWTIME（&lt;time-attr&gt;, &lt;slide-interval&gt;, &lt;size-interval&gt;）</code></td><td>TIMESTAMP（rowtime-attr）</td><td>返回窗口的结束时间（不包含边界）。例如<code>[00:00, 00:15)</code> 窗口，返回<code>00:14:59.999</code>。返回值是一个rowtime attribute，即可以基于该字段做时间类型的操作，只能用在基于event time的window上。</td></tr>
+<tr><td><code>HOP_PROCTIME（&lt;time-attr&gt;, &lt;slide-interval&gt;, &lt;size-interval&gt;）</code></td><td>TIMESTAMP（rowtime-attr）</td><td>返回窗口的结束时间（不包含边界）。例如<code>[00:00, 00:15)</code> 窗口，返回<code>00:14:59.999</code> 。返回值是一个proctime attribute</td></tr>
+</tbody></table>
+<p>滑动窗口实例：<br />
+java代码同上，sql语句改为：</p>
+<pre><code class="language-sql">SELECT HOP_START(t, INTERVAL '5' SECOND, INTERVAL '10' SECOND) AS window_start, HOP_END(t, INTERVAL '5' SECOND, INTERVAL '10' SECOND) AS window_end, SUM(v) FROM   logT   GROUP BY HOP(t, INTERVAL '5' SECOND, INTERVAL '10' SECOND)
+</code></pre>
+<p>每间隔5秒统计10秒内的数据<br />
+sql结果如下：</p>
+<pre><code class="language-shell">(2019-11-01 06:53:15.0,2019-11-01 06:53:25.0,208)  
+(2019-11-01 06:53:10.0,2019-11-01 06:53:20.0,204)  
+(2019-11-01 06:53:05.0,2019-11-01 06:53:15.0,507)  
+(2019-11-01 06:53:20.0,2019-11-01 06:53:30.0,208)  
+(2019-11-01 06:53:00.0,2019-11-01 06:53:10.0,603)  
+(2019-11-01 06:52:55.0,2019-11-01 06:53:05.0,300)
+</code></pre>
+<h3 id="会话窗口"><a class="header" href="#会话窗口">会话窗口</a></h3>
+<p>会话窗口（SESSION）通过Session活动来对元素进行分组。会话窗口与滚动窗口和滑动窗口相比，没有窗口重叠，没有固定窗口大小。相反，当它在一个固定的时间周期内不再收到元素，即会话断开时，这个窗口就会关闭。</p>
+<p>会话窗口通过一个间隔时间（Gap）来配置，这个间隔定义了非活跃周期的长度。例如，一个表示鼠标点击活动的数据流可能具有长时间的空闲时间，并在两段空闲之间散布着高浓度的点击。 如果数据在指定的间隔（Gap）之后到达，则会开始一个新的窗口。</p>
+<p>会话窗口示例如下图。每个Key由于不同的数据分布，形成了不同的Window。</p>
+<p><img src="_v_images/20210412125049773_363551252" alt="" /><br />
+使用标识函数选出窗口的起始时间或者结束时间，窗口的时间属性用于下级Window的聚合。</p>
+<table><thead><tr><th>窗口标识函数</th><th>返回类型</th><th>描述</th></tr></thead><tbody>
+<tr><td><code>SESSION_START（&lt;time-attr&gt;, &lt;gap-interval&gt;）</code></td><td>Timestamp</td><td>返回窗口的起始时间（包含边界）。如<code>[00:10, 00:15)</code> 的窗口，返回 <code>00:10</code> ，即为此会话窗口内第一条记录的时间。</td></tr>
+<tr><td><code>SESSION_END（&lt;time-attr&gt;, &lt;gap-interval&gt;）</code></td><td>Timestamp</td><td>返回窗口的结束时间（包含边界）。如<code>[00:00, 00:15)</code> 的窗口，返回 <code>00:15</code>，即为此会话窗口内最后一条记录的时间+<code>&lt;gap-interval&gt;</code>。</td></tr>
+<tr><td><code>SESSION_ROWTIME（&lt;time-attr&gt;, &lt;gap-interval&gt;）</code></td><td>Timestamp（rowtime-attr）</td><td>返回窗口的结束时间（不包含边界）。如 <code>[00:00, 00:15)</code> 的窗口，返回<code>00:14:59.999</code> 。返回值是一个rowtime attribute，也就是可以基于该字段进行时间类型的操作。该参数只能用于基于event time的window 。</td></tr>
+<tr><td><code>SESSION_PROCTIME（&lt;time-attr&gt;, &lt;gap-interval&gt;）</code></td><td>Timestamp（rowtime-attr）</td><td>返回窗口的结束时间（不包含边界）。如 <code>[00:00, 00:15)</code> 的窗口，返回 <code>00:14:59.999</code> 。返回值是一个 proctime attribute，也就是可以基于该字段进行时间类型的操作。该参数只能用于基于processing time的window 。</td></tr>
+</tbody></table>
+<p>会话窗口实例：<br />
+java代码同上<br />
+sql语句如下：<br />
+每隔5秒聚合</p>
+<pre><code class="language-sql">SELECT SESSION_START(t, INTERVAL '5' SECOND) AS window_start,
+SESSION_END(t, INTERVAL '5' SECOND) AS window_end, SUM(v) FROM  logT  GROUP BY SESSION(t, INTERVAL '5' SECOND)
+</code></pre>
+<p>sql结果：</p>
+<pre><code class="language-shell">(2019-11-01 06:53:21.0,2019-11-01 06:53:26.0,208)  
+(2019-11-01 06:53:00.0,2019-11-01 06:53:05.0,300)  
+(2019-11-01 06:53:09.0,2019-11-01 06:53:17.0,507)
+
+</code></pre>
+<h3 id="over窗口"><a class="header" href="#over窗口">OVER窗口</a></h3>
+<p>OVER窗口（OVER Window）是传统数据库的标准开窗，不同于Group By Window，OVER窗口中每1个元素都对应1个窗口。窗口内的元素是当前元素往前多少个或往前多长时间的元素集合，因此流数据元素分布在多个窗口中。</p>
+<p>在应用OVER窗口的流式数据中，每1个元素都对应1个OVER窗口。每1个元素都触发1次数据计算，每个触发计算的元素所确定的行，都是该元素所在窗口的最后1行。在实时计算的底层实现中，OVER窗口的数据进行全局统一管理（数据只存储1份），逻辑上为每1个元素维护1个OVER窗口，为每1个元素进行窗口计算，完成计算后会清除过期的数据。</p>
+<p>Flink SQL中对OVER窗口的定义遵循标准SQL的定义语法，传统OVER窗口没有对其进行更细粒度的窗口类型命名划分。按照计算行的定义方式，OVER Window可以分为以下两类：</p>
+<ul>
+<li>ROWS OVER Window：每一行元素都被视为新的计算行，即每一行都是一个新的窗口。</li>
+<li>RANGE OVER Window：具有相同时间值的所有元素行视为同一计算行，即具有相同时间值的所有行都是同一个窗口。</li>
+</ul>
+<p>Rows OVER Window语义</p>
+<p>窗口数据</p>
+<p>ROWS OVER Window的每个元素都确定一个窗口。ROWS OVER Window分为Unbounded（无界流）和Bounded（有界流）两种情况。<br />
+Unbounded ROWS OVER Window数据示例如下图所示。<br />
+<img src="_v_images/20210412125049063_1513990833" alt="" /></p>
+<p>虽然上图所示窗口user1的w7、w8及user2的窗口w3、w4都是同一时刻到达，但它们仍然在不同的窗口，这一点与RANGE OVER Window不同。</p>
+<p>Bounded ROWS OVER Window数据以3个元素（往前2个元素）的窗口为例，如下图所示。</p>
+<p><img src="_v_images/20210412125048555_824932679" alt="" /></p>
+<p>虽然上图所示窗口user1的w5、w6及user2的窗口w1、w2都是同一时刻到达，但它们仍然在不同的窗口，这一点与RANGE OVER Window不同。</p>
+<p>RANGE OVER Window语义</p>
+<p>窗口数据</p>
+<p>RANGE OVER Window所有具有共同元素值（元素时间戳）的元素行确定一个窗口，RANGE OVER Window分为Unbounded和Bounded的两种情况。<br />
+Unbounded RANGE OVER Window数据示例如下图所示。</p>
+<p><img src="_v_images/20210412125048048_1968314666" alt="" /><br />
+上图所示窗口user1的w7、user2的窗口w3，两个元素同一时刻到达，属于相同的window，这一点与ROWS OVER Window不同。</p>
+<p>Bounded RANGE OVER Window数据，以3秒中数据<code>(INTERVAL '2' SECOND)</code>的窗口为例，如下图所示。</p>
+<p><img src="_v_images/20210412125047258_2027952546" alt="" /></p>
+<p>上图所示窗口user1的w6、user2的窗口w3，元素都是同一时刻到达，属于相同的window，这一点与ROWS OVER Window不同。</p>
+<p>OVER窗口实例：<br />
+java代码同上<br />
+初始数据如下：</p>
+<pre><code class="language-java">// 初始数据
+DataStream&lt;Tuple3&lt;Long, String,Integer&gt;&gt; log = env.fromCollection(Arrays.asList(
+        //时间 14:53:00
+        new Tuple3&lt;&gt;(1572591180_000L,&quot;xiao_ming&quot;,999),
+        //时间 14:53:09
+        new Tuple3&lt;&gt;(1572591189_000L,&quot;zhang_san&quot;,303),
+        //时间 14:53:12
+        new Tuple3&lt;&gt;(1572591192_000L, &quot;xiao_li&quot;,888),
+        //时间 14:53:21
+        new Tuple3&lt;&gt;(1572591201_000L,&quot;li_si&quot;, 908),
+        //2019-11-01 14:53:31
+        new Tuple3&lt;&gt;(1572591211_000L,&quot;li_si&quot;, 555),
+        //2019-11-01 14:53:41
+        new Tuple3&lt;&gt;(1572591221_000L,&quot;zhang_san&quot;, 666),
+        //2019-11-01 14:53:51
+        new Tuple3&lt;&gt;(1572591231_000L,&quot;xiao_ming&quot;, 777),
+        //2019-11-01 14:54:01
+        new Tuple3&lt;&gt;(1572591241_000L,&quot;xiao_ming&quot;, 213),
+        //2019-11-01 14:54:11
+        new Tuple3&lt;&gt;(1572591251_000L,&quot;zhang_san&quot;, 300),
+        //2019-11-01 14:54:21
+        new Tuple3&lt;&gt;(1572591261_000L,&quot;li_si&quot;, 112)
+));
+</code></pre>
+<p>ROWS over Windown sql语句如下：</p>
+<pre><code class="language-sql">SELECT name,v,MAX(v) OVER(
+PARTITION BY name 
+ORDER BY t 
+ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+) FROM logT
+</code></pre>
+<p>sql结果如下：</p>
+<pre><code class="language-shell">(zhang_san,303,303)  
+(xiao_li,888,888)  
+(li_si,908,908)  
+(xiao_ming,999,999)  
+(zhang_san,666,666)  
+(li_si,555,908)  
+(xiao_ming,777,999)  
+(li_si,112,908)  
+(zhang_san,300,666)  
+(xiao_ming,213,999)
+
+</code></pre>
+<p>RANGE OVER Window sql 语句如下：</p>
+<pre><code class="language-sql">SELECT name,v,MAX(v) OVER(
+PARTITION BY name 
+ORDER BY t 
+RANGE BETWEEN INTERVAL '15' SECOND PRECEDING AND CURRENT ROW
+) FROM  logT
+</code></pre>
+<p>sql结果如下：</p>
+<pre><code class="language-shell">(xiao_ming,999,999)  
+(xiao_li,888,888)  
+(zhang_san,303,303)  
+(li_si,908,908)  
+(li_si,555,908)  
+(xiao_ming,777,777)  
+(zhang_san,666,666)  
+(li_si,112,112)  
+(xiao_ming,213,777)  
+(zhang_san,300,300)
+</code></pre>
+<p>本文的java代码来自：
+<a href="https://github.com/CheckChe0803/flink-simple-tutorial/tree/master/table/src/main/java/sql/window">https://github.com/CheckChe08...</a></p>
+<h2 id="底层实现"><a class="header" href="#底层实现">底层实现</a></h2>
+<p><a href="https://mp.weixin.qq.com/s/UkpkS_JiRGR0ibZKYechbg">https://mp.weixin.qq.com/s/UkpkS_JiRGR0ibZKYechbg</a></p>
+<h3 id="概述"><a class="header" href="#概述">概述</a></h3>
+<p>窗口是无限流上一种核心机制，可以流分割为有限大小的“窗口”，同时，在窗口内进行聚合，从而把源源不断产生的数据根据不同的条件划分成一段一段有边界的数据区间，使用户能够利用窗口功能实现很多复杂的统计分析需求。</p>
+<h3 id="window分类"><a class="header" href="#window分类">Window分类</a></h3>
+<p>1、TimeWindow与CountWindow Flink Window可以是时间驱动的（<code>TimeWindow</code>），也可以是数据驱动的（CountWindow）。由于flink-planner-blink SQL中目前只支持TimeWindow相应的表达语句（<code>TUMBLE</code>、<code>HOP</code>、<code>SESSION</code>），因此，本文主要介绍TimeWindow SQL示例和逻辑，CountWindow感兴趣的读者可自行分析。</p>
+<p>2、TimeWindow子类型 Flink TimeWindow有滑动窗口(<code>HOP</code>)、滚动窗口(<code>TUMBLE</code>)以及会话窗口(<code>SESSION</code>)三种，所选取的字段时间，可以是系统时间(<code>PROCTIME</code>)或事件时间(<code>EVENT TIME</code>)两种，接来下依次介绍。</p>
+<h4 id="tumble-window滚动窗口"><a class="header" href="#tumble-window滚动窗口">Tumble Window（滚动窗口）</a></h4>
+<p>翻转窗口Assigner将每个元素分配给具有指定大小的窗口。翻转窗口的大小是固定的，且不会重叠。例如，指定一个大小为5分钟的翻滚窗口，并每5分钟启动一个新窗口，如下图所示：</p>
+<p><img src="_v_images/20210412125430504_1844331455" alt="图片" /></p>
+<p>TUMBLE ROWTIME语法示例：</p>
+<pre><code class="language-sql">CREATE TABLE sessionOrderTableRowtime (
+    ctime TIMESTAMP,
+    categoryName VARCHAR,
+    shopName VARCHAR,
+    itemName VARCHAR,
+    userId VARCHAR,
+    price FLOAT,
+    action BIGINT,
+    WATERMARK FOR ctime AS withOffset(ctime, 1000),
+    proc AS PROCTIME()
+) with (
+    `type` = 'kafka',
+    format = 'json',
+    updateMode = 'append',
+    `group.id` = 'groupId',
+    bootstrap.servers = 'xxxxx:9092',
+    version = '0.10',
+    `zookeeper.connect` = 'xxxxx:2181',
+    startingOffsets = 'latest',
+    topic = 'sessionsourceproctime'
+);
+
+
+CREATE TABLE popwindowsink (
+    countA BIGINT,
+    ctime_start TIMESTAMP,
+    ctime_end VARCHAR,
+    ctime_rowtime VARCHAR,
+    categoryName VARCHAR,
+    price_sum FLOAT
+) with (
+    format = 'json',
+    updateMode = 'append',
+    bootstrap.servers = 'xxxxx:9092',
+    version = '0.10',
+    topic = 'sessionsinkproctime',
+    `type` = 'kafka'
+);
+
+INSERT INTO popwindowsink
+(SELECT
+COUNT(*),
+TUMBLE_START(ctime, INTERVAL '5' MINUTE),
+DATE_FORMAT(TUMBLE_END(ctime, INTERVAL '5' MINUTE), 'yyyy-MM-dd-HH-mm-ss:SSS'), --将TUMBLE_END转为可视化的日期
+DATE_FORMAT(TUMBLE_ROWTIME(ctime, INTERVAL '5' MINUTE), 'yyyy-MM-dd-HH-mm-ss:SSS'), --这里TUMBLE_ROWTIME为TUMBLE_END-1ms，一般用于后续窗口级联聚合
+categoryName,
+SUM(price)
+FROM sessionOrderTableRowtime
+GROUP BY TUMBLE(ctime, INTERVAL '5' MINUTE), categoryName)
+</code></pre>
+<p>TUMBLEP ROCTIME语法示例：</p>
+<pre><code class="language-sql">INSERT INTO popwindowsink
+(SELECT
+COUNT(*),
+TUMBLE_START(proc, INTERVAL '5' MINUTE),
+DATE_FORMAT(TUMBLE_END(proc, INTERVAL '5' MINUTE), 'yyyy-MM-dd-HH-mm-ss:SSS'),
+DATE_FORMAT(TUMBLE_PROCTIME(proc, INTERVAL '5' MINUTE), 'yyyy-MM-dd-HH-mm-ss:SSS'), --注意这里proc字段即Source DDL中指定的PROCTIME
+categoryName,
+SUM(price)
+FROM sessionOrderTableRowtime
+GROUP BY TUMBLE(proc, INTERVAL '5' MINUTE), categoryName)
+</code></pre>
+<p>ROWTIME与PROCTIME区别：</p>
+<ul>
+<li>在使用上：主要是填入的ctime、proc关键字的区别，这两个字段在Source DDL中指定方式不一样.</li>
+<li>在实现原理上：ROWTIME模式，根据ctime对应的值，去确定窗口的start、end；PROCTIME模式，在WindowOperator处理数据时，获取本地系统时间，去确定窗口的start、end.</li>
+</ul>
+<p>由于生产系统中，主要使用ROWTIME来计算、聚合、统计，PROCTIME一般用于测试或对统计精度要求不高的场景，本文后续都主要以ROWTIME进行分析。</p>
+<h4 id="hop-window滑动窗口"><a class="header" href="#hop-window滑动窗口">Hop Window（滑动窗口）</a></h4>
+<p>滑动窗口Assigner将元素分配给多个固定长度的窗口。类似于滚动窗口分配程序，窗口的大小由窗口大小参数配置。因此，如果滑动窗口小于窗口大小，则滑动窗口可以重叠。在这种情况下，元素被分配到多个窗口。其实，滚动窗口TUMBLE是滑动窗口的一个特例。例子，设置一个10分钟长度的窗口，以5分钟间隔滑动。这样，每5分钟就会出现一个窗口，其中包含最近10分钟内到达的事件，如下图：</p>
+<p><img src="_v_images/20210412125430097_940076266" alt="图片" /></p>
+<p>HOP ROWTIME语法示例：</p>
+<pre><code class="language-sql">INSERT INTO popwindowsink
+(SELECT
+COUNT(*),
+HOP_START(ctime, INTERVAL '5' MINUTE,  INTERVAL '10' MINUTE),
+DATE_FORMAT(HOP_END(ctime, INTERVAL '5' MINUTE,  INTERVAL '10' MINUTE), 'yyyy-MM-dd-HH-mm-ss:SSS'),
+DATE_FORMAT(HOP_ROWTIME(ctime, INTERVAL '5' MINUTE,  INTERVAL '10' MINUTE), 'yyyy-MM-dd-HH-mm-ss:SSS'), --注意这里ctime字段即Source DDL中指定的ROWTIME
+categoryName,
+SUM(price)
+FROM sessionOrderTableRowtime
+GROUP BY HOP(ctime, INTERVAL '5' MINUTE,  INTERVAL '10' MINUTE), categoryName)
+</code></pre>
+<h4 id="session-window会话窗口"><a class="header" href="#session-window会话窗口">Session Window（会话窗口）</a></h4>
+<p>会话窗口Assigner根据活动会话对元素进行分组。与翻滚窗口和滑动窗口相比，会话窗口不会重叠，也没有固定的开始和结束时间。相反，会话窗口在一段时间内不接收元素时关闭，即，当一段不活跃的间隙发生时，当前会话关闭，随后的元素被分配给新的会话。</p>
+<p><img src="_v_images/20210412125429689_1075804874" alt="图片" /></p>
+<p>SESSION ROWTIME语法示例：</p>
+<pre><code class="language-sql">INSERT INTO popwindowsink
+(SELECT
+COUNT(*),
+SESSION_START(ctime, INTERVAL '5' MINUTE),
+DATE_FORMAT(SESSION_END(ctime, INTERVAL '5' MINUTE, 'yyyy-MM-dd-HH-mm-ss:SSS'),
+DATE_FORMAT(SESSION_ROWTIME(ctime, INTERVAL '5' MINUTE), 'yyyy-MM-dd-HH-mm-ss:SSS'), --注意这里ctime字段即Source DDL中指定的ROWTIME
+categoryName,
+SUM(price)
+FROM sessionOrderTableRowtime
+GROUP BY SESSION(ctime, INTERVAL '5' MINUTE), categoryName)
+</code></pre>
+<h3 id="window分类及整体流程"><a class="header" href="#window分类及整体流程">Window分类及整体流程</a></h3>
+<p><img src="_v_images/20210412125429282_375710651" alt="图片" /></p>
+<p>上图内部流程分析：</p>
+<p>应用层SQL:
+1.1 window分类及配置，包括滑动、翻转、会话类型窗口
+1.2 window时间类型配置，默认待字段名的EventTime，也可以通过PROCTIME()配置为ProcessingTime
+Calcite解析引擎:
+2.1 Calcite SQL解析，包括逻辑、优化、物理计划和算子绑定(#translateToPlanInternal)，在本文特指StreamExecGroupWindowAggregateRule和StreamExecGroupWindowAggregate物理计划
+WindowOperator算子创建相关:
+3.1 StreamExecGroupWindowAggregate#createWindowOperator创建算子
+3.2 WindowAssigner的创建，根据输入的数据，和窗口类型，生成多个窗口
+3.3 processElement()真实处理数据，包括聚合运算，生成窗口，更新缓存，提交数据等功能
+3.4 Trigger根据数据或时间，来决定窗口触发</p>
+<h3 id="创建windowoperator算子"><a class="header" href="#创建windowoperator算子">创建WindowOperator算子</a></h3>
+<p>由于window语法主要是在group by语句中使用，calcite创建WindowOperator算子伴随着聚合策略的实现，包括聚合规则匹配(StreamExecGroupWindowAggregateRule)，以及生成聚合physical算子StreamExecGroupWindowAggregate两个子流程：</p>
+<p><img src="_v_images/20210412125428973_1212879820" alt="图片" /></p>
+<p>上图内部流程分析：</p>
+<p>a. StreamExecGroupWindowAggregateRule会对window进行提前匹配，
+生成的WindowEmitStrategy内部具有：是否为EventTime表标识、是否为SessionWindow、early fire和late fire配置、延迟毫秒数（窗口结束时间加上这个毫秒数即数据清理时间）
+b. StreamExecGroupWindowAggregateRule会获取聚合逻辑计划中，window配置的时间字段，记录时间字段index信息，window的触发和清理都会用到这个时间
+c. StreamExecGroupWindowAggregate入口即为translateToPlanInternal，它的实现方式与spark比较类似，会先循环调用child子节点translateToPlan方法，生成inputtranform信息作为输入
+d.创建aggregateHandler是一个代码生成的过程，其生成的创建的class实现了accumulate、retract、merge、update方法，这个handler最后也传递给了WindowOperater，处理数据时，可以进行聚合、回撤并输出最新数据给下游
+e. StreamExecGroupWindowAggregate与window相关的最后一步就是调用#createWindowOperator创建算子，其内部先创建了一个WindowOperatorBuilder，设置window类型、retract标识、trigger(window触发条件)、聚合函数句柄等，最后创建WindowOperator</p>
+<h3 id="windowoperator处理数据图解"><a class="header" href="#windowoperator处理数据图解">WindowOperator处理数据图解</a></h3>
+<p>在上一小节，已经完成了WindowOperator参数的设定，并创建实例，接下来我们主要分析WindowOperator真实处理数据的流程(起点在WindowOperator#processElement方法)：</p>
+<p><img src="_v_images/20210412125428666_1517359800" alt="图片" /></p>
+<p>processElement处理数据流程：</p>
+<p>a、 获取当前record具有的事件时间，如果是Processing Time模式，从时间服务Service里面获取时间即可
+b、使用上一步获取的时间，接着调用windowFunction.assignWindow生成窗口，其内部实际上是调用各类型的WindowAssigner生成窗口，windowFunction有三大类，分别是Paned（滑动）、Merge（会话）、General（前两种以外的），WindowAssigner类型大致有5类，分别是Tumbling（翻转）、Sliding（滑动）、Session（会话）、CountTumbling 、CountSlide这几类,根据输入的一条数据和时间，可以生成1到多个窗口
+c、接下来是遍历涉及的窗口进行聚合，包括从windowState获取聚合前值、使用句柄进行聚合、更新状态至windowState，将当前转态
+d、上一步聚合完成后，就可以遍历窗口，使用TriggerContext（其实就是不同类型窗口Trigger触发器的代理），综合early fire、late fire、水印时间与窗口结束时间，综合判断是否触发窗口写出
+e、如果TriggerContext判断出触发条件为true，则调用emitWindowResult写出，其内部有retract判断，更新当前state及previous state，写出数据等操作
+f、如果TriggerContext判断出触发条件为false，则触发需要注册cleanupTimer,到达指定时间后，触发onEventTime或onProcessingTime
+g、onEventTime或onProcessingTime功能十分类似，首先会触发emitWindowResult提交结果，另外会判断窗口结束时间+Lateness和当前时间是否相等，相等则表示可以清除窗口数据、当前state及previous state、窗口对应trigger。</p>
+<h3 id="windowoperator源码调试"><a class="header" href="#windowoperator源码调试">WindowOperator源码调试</a></h3>
+<p>为了更直观的理解Window内部运行原理，这里我们引入一个Flink源码中已有的SQL Window测试用例，并进行了简单的修改（即修改为使用HOP滑动窗口）</p>
+<pre><code class="language-java">classWindowJoinITCase{
+  @Test
+  def testRowTimeInnerJoinWithWindowAggregateOnFirstTime(): Unit = {
+    val sqlQuery =
+      &quot;&quot;&quot;
+        |SELECT t1.key, HOP_END(t1.rowtime, INTERVAL '4' SECOND, INTERVAL '20' SECOND), COUNT(t1.key)
+        |FROM T1 AS t1
+        |GROUP BY HOP(t1.rowtime, INTERVAL '4' SECOND, INTERVAL '20' SECOND), t1.key
+        |&quot;&quot;&quot;.stripMargin
+
+    val data1 = new mutable.MutableList[(String, String, Long)]
+    data1.+=((&quot;A&quot;, &quot;L-1&quot;, 1000L))
+    data1.+=((&quot;A&quot;, &quot;L-2&quot;, 2000L))
+    data1.+=((&quot;A&quot;, &quot;L-3&quot;, 3000L))
+    //data1.+=((&quot;B&quot;, &quot;L-8&quot;, 2000L))
+    data1.+=((&quot;B&quot;, &quot;L-4&quot;, 4000L))
+    data1.+=((&quot;C&quot;, &quot;L-5&quot;, 2100L))
+    data1.+=((&quot;A&quot;, &quot;L-6&quot;, 10000L))
+    data1.+=((&quot;A&quot;, &quot;L-7&quot;, 13000L))
+
+    val t1 = env.fromCollection(data1)
+      .assignTimestampsAndWatermarks(new Row3WatermarkExtractor2)
+      .toTable(tEnv, 'key, 'id, 'rowtime)
+
+    tEnv.registerTable(&quot;T1&quot;, t1)
+
+    val sink = new TestingAppendSink
+    val t_r = tEnv.sqlQuery(sqlQuery)
+    val result = t_r.toAppendStream[Row]
+    result.addSink(sink)
+    env.execute()
+  }
+}
+</code></pre>
+<p>1、StreamExecGroupWindowAggregate#createWindowOperator()创建算子</p>
+<p>StreamExecGroupWindowAggregate#createWindowOperator()是创建WindowOperator算子的地方，对应的代码和注释：</p>
+<pre><code class="language-java">class StreamExecGroupWindowAggregate{
+  private def createWindowOperator(
+      config: TableConfig,
+      aggsHandler: GeneratedNamespaceAggsHandleFunction[_],
+      recordEqualiser: GeneratedRecordEqualiser,
+      accTypes: Array[LogicalType],
+      windowPropertyTypes: Array[LogicalType],
+      aggValueTypes: Array[LogicalType],
+      inputFields: Seq[LogicalType],
+      timeIdx: Int): WindowOperator[_, _] = {
+
+    val builder = WindowOperatorBuilder
+      .builder()
+      .withInputFields(inputFields.toArray)
+    val timeZoneOffset = -config.getTimeZone.getOffset(Calendar.ZONE_OFFSET)
+
+    // 设置WindowOperatorBuilder，最后通过Builder创建WindowOperator
+    val newBuilder = window match {
+      case TumblingGroupWindow(_, timeField, size) //Tumble PROCTIME模式，内部设置Assiger
+          if isProctimeAttribute(timeField) &amp;&amp; hasTimeIntervalType(size) =&gt;
+        builder.tumble(toDuration(size), timeZoneOffset).withProcessingTime()
+
+      case TumblingGroupWindow(_, timeField, size) //Tumble ROWTIME模式，内部设置Assiger
+          if isRowtimeAttribute(timeField) &amp;&amp; hasTimeIntervalType(size) =&gt;
+        builder.tumble(toDuration(size), timeZoneOffset).withEventTime(timeIdx)
+
+      case SlidingGroupWindow(_, timeField, size, slide) //HOP PROCTIME模式，内部设置Assiger
+          if isProctimeAttribute(timeField) &amp;&amp; hasTimeIntervalType(size) =&gt;
+        builder.sliding(toDuration(size), toDuration(slide), timeZoneOffset)
+          .withProcessingTime()
+       .....
+      case SessionGroupWindow(_, timeField, gap)
+          if isRowtimeAttribute(timeField) =&gt;
+        builder.session(toDuration(gap)).withEventTime(timeIdx)
+    }
+
+    // Retraction和Trigger设置
+    //默认是no retract和EventTime.afterEndOfWindow
+    if (emitStrategy.produceUpdates) {
+      // mark this operator will send retraction and set new trigger
+      newBuilder
+        .withSendRetraction()
+        .triggering(emitStrategy.getTrigger)
+    }
+
+    newBuilder
+      .aggregate(aggsHandler, recordEqualiser, accTypes, aggValueTypes, windowPropertyTypes)
+      .withAllowedLateness(Duration.ofMillis(emitStrategy.getAllowLateness))
+      .build()
+  }
+}
+</code></pre>
+<p>2、WindowOperator#processElement()处理数据，注册Timer</p>
+<pre><code class="language-java">class StreamExecGroupWindowAggregate{
+  private def createWindowOperator(
+      config: TableConfig,
+      aggsHandler: GeneratedNamespaceAggsHandleFunction[_],
+      recordEqualiser: GeneratedRecordEqualiser,
+      accTypes: Array[LogicalType],
+      windowPropertyTypes: Array[LogicalType],
+      aggValueTypes: Array[LogicalType],
+      inputFields: Seq[LogicalType],
+      timeIdx: Int): WindowOperator[_, _] = {
+
+    val builder = WindowOperatorBuilder
+      .builder()
+      .withInputFields(inputFields.toArray)
+    val timeZoneOffset = -config.getTimeZone.getOffset(Calendar.ZONE_OFFSET)
+
+    // 设置WindowOperatorBuilder，最后通过Builder创建WindowOperator
+    val newBuilder = window match {
+      case TumblingGroupWindow(_, timeField, size) //Tumble PROCTIME模式，内部设置Assiger
+          if isProctimeAttribute(timeField) &amp;&amp; hasTimeIntervalType(size) =&gt;
+        builder.tumble(toDuration(size), timeZoneOffset).withProcessingTime()
+
+      case TumblingGroupWindow(_, timeField, size) //Tumble ROWTIME模式，内部设置Assiger
+          if isRowtimeAttribute(timeField) &amp;&amp; hasTimeIntervalType(size) =&gt;
+        builder.tumble(toDuration(size), timeZoneOffset).withEventTime(timeIdx)
+
+      case SlidingGroupWindow(_, timeField, size, slide) //HOP PROCTIME模式，内部设置Assiger
+          if isProctimeAttribute(timeField) &amp;&amp; hasTimeIntervalType(size) =&gt;
+        builder.sliding(toDuration(size), toDuration(slide), timeZoneOffset)
+          .withProcessingTime()
+       .....
+      case SessionGroupWindow(_, timeField, gap)
+          if isRowtimeAttribute(timeField) =&gt;
+        builder.session(toDuration(gap)).withEventTime(timeIdx)
+    }
+
+    // Retraction和Trigger设置
+    //默认是no retract和EventTime.afterEndOfWindow
+    if (emitStrategy.produceUpdates) {
+      // mark this operator will send retraction and set new trigger
+      newBuilder
+        .withSendRetraction()
+        .triggering(emitStrategy.getTrigger)
+    }
+
+    newBuilder
+      .aggregate(aggsHandler, recordEqualiser, accTypes, aggValueTypes, windowPropertyTypes)
+      .withAllowedLateness(Duration.ofMillis(emitStrategy.getAllowLateness))
+      .build()
+  }
+}
+</code></pre>
+<p>运行数据：</p>
+<p><img src="_v_images/20210412125428458_505070513" alt="图片" /></p>
+<p>3、Timer触发 I、InternalTimerServiceImpl#advanceWatermark()</p>
+<p>WindowOperator#onEventTime()的调用前，可以先看其上层调用：InternalTimerServiceImpl#advanceWatermark()</p>
+<p><img src="_v_images/20210412125428150_761077256" alt="图片" /></p>
+<p>当获取的watermark为9999L时，把eventTimeTimerQueue队列中所有小于这个值的timer poll出来，调用WindowOperator.onEnventTime(timer)</p>
+<p>II、WindwOperator#onEventTime()</p>
+<p>WindwOperator#onEventTime()方法比较清晰，主要是window的触发和window的清理两段逻辑：</p>
+<pre><code class="language-java">public class WindowOperator{
+    publicvoidonEventTime(InternalTimer&lt;K, W&gt; timer) throws Exception {
+        setCurrentKey(timer.getKey());
+
+        triggerContext.window = timer.getNamespace();
+        if (triggerContext.onEventTime(timer.getTimestamp())) {
+            // fire
+            emitWindowResult(triggerContext.window);
+        }
+
+        if (windowAssigner.isEventTime()) {
+            windowFunction.cleanWindowIfNeeded(triggerContext.window, timer.getTimestamp());
+        }
+    }
+}
+</code></pre>
+<p>III、emitWindowResult()提交结果</p>
+<p>#emitWindowResult()重点关注下其第一行代码：BaseRow aggResult = windowFunction.getWindowAggregationResult(window); 这个表示根据具体的TimeWindow{start=4000, end=24000}，去获取聚合数据，如果是滑动窗口，需要将4000, 8000 ,12000，16000 , 20000, 24000这几段affect窗口里面的聚合值合并起来，内部逻辑：</p>
+<pre><code class="language-java">public classPanedWindowProcessFunction{
+    public BaseRow getWindowAggregationResult(W window) throws Exception {
+        Iterable&lt;W&gt; panes = windowAssigner.splitIntoPanes(window);
+        BaseRow acc = windowAggregator.createAccumulators();
+        // null namespace means use heap data views
+        windowAggregator.setAccumulators(null, acc);
+        for (W pane : panes) {
+            BaseRow paneAcc = ctx.getWindowAccumulators(pane);
+            if (paneAcc != null) {
+                windowAggregator.merge(pane, paneAcc);
+            }
+        }
+        return windowAggregator.getValue(window);
+    }
+}
+</code></pre>
+<p><img src="_v_images/20210412125427840_804453196" alt="图片" /></p>
+<h3 id="emittrigger触发器"><a class="header" href="#emittrigger触发器">Emit（Trigger）触发器</a></h3>
+<ul>
+<li>配置方式指定Trigger：Flink1.9.0目前支持通过TableConifg配置earlyFireInterval、lateFireInterval毫秒数，来指定窗口结束之前、窗口结束之后的触发策略（默认是watermark超过窗口结束后触发一次），策略的解析在WindowEmitStrategy，在StreamExecGroupWindowAggregateRule就会创建和解析这个策略</li>
+<li>SQL方式指定Trigger：Flink1.9.0代码中calcite部分已有SqlEmit相关的实现，后续可以支持SQL 语句（INSERT INTO）中配置EMIT触发器</li>
+</ul>
+<p>本文Emit和Trigger都是触发器这一个概念，只是使用的方式不一样</p>
+<p>1、Emit策略 Emit 策略是指在Flink SQL 中，query的输出策略（如能忍受的延迟）可能在不同的场景有不同的需求，而这部分需求，传统的 ANSI SQL 并没有对应的语法支持。比如用户需求：1小时的时间窗口，窗口触发之前希望每分钟都能看到最新的结果，窗口触发之后希望不丢失迟到一天内的数据。针对这类需求，抽象出了EMIT语法，并扩展到了SQL语法。</p>
+<p>2、用途 EMIT语法的用途目前总结起来主要提供了：控制延迟、数据精确性，两方面的功能。</p>
+<ul>
+<li>控制延迟。针对大窗口，设置窗口触发之前的EMIT输出频率，减少用户看到结果的延迟(WITH| WITHOUT DELAY)。</li>
+<li>数据精确性。不丢弃窗口触发之后的迟到的数据，修正输出结果(minIdleStateRetentionTime，在WindowEmitStrategy中生成allowLateness)。</li>
+</ul>
+<p>在选择EMIT策略时，还需要与处理开销进行权衡。因为越低的输出延迟、越高的数据精确性，都会带来越高的计算开销。</p>
+<p>3、语法 EMIT 语法是用来定义输出的策略，即是定义在输出（INSERT INTO）上的动作。当未配置时，保持原有默认行为，即 window 只在 watermark 触发时 EMIT 一个结果。</p>
+<p>语法：INSERT INTO tableName query EMIT strategy [, strategy]*</p>
+<p>strategy ::= {WITH DELAY timeInterval | WITHOUT DELAY} [BEFORE WATERMARK |AFTER WATERMARK]</p>
+<p>timeInterval ::=‘string’ timeUnit</p>
+<p>WITH DELAY：声明能忍受的结果延迟，即按指定 interval 进行间隔输出。WITHOUT DELAY：声明不忍受延迟，即每来一条数据就进行输出。BEFORE WATERMARK：窗口结束之前的策略配置，即watermark 触发之前。AFTER WATERMARK：窗口结束之后的策略配置，即watermark 触发之后。注：</p>
+<ul>
+<li>其中 strategy可以定义多个，同时定义before和after的策略。但不能同时定义两个 before 或 两个after 的策略。</li>
+<li>若配置了AFTER WATERMARK 策略，需要显式地在TableConfig中配置minIdleStateRetentionTime标识能忍受的最大迟到时间。</li>
+<li>minIdleStateRetentionTime在window中只影响窗口何时清除，不直接影响窗口何时触发， 例如配置为3600000，最多容忍1小时的迟到数据，超过这个时间的数据会直接丢弃</li>
+</ul>
+<p>4、示例 如果我们已经有一个TUMBLE（ctime, INTERVAL ‘1’ HOUR）的窗口，tumble_window 的输出是需要等到一小时结束才能看到结果，我们希望能尽早能看到窗口的结果（即使是不完整的结果）。例如，我们希望每分钟看到最新的窗口结果：INSERT INTO result SELECT * FROM tumble_window EMIT WITH DELAY ‘1’ MINUTE BEFORE WATERMARK – 窗口结束之前，每隔1分钟输出一次更新结果</p>
+<p>tumble_window 会忽略并丢弃窗口结束后到达的数据，而这部分数据对我们来说很重要，希望能统计进最终的结果里。而且我们知道我们的迟到数据不会太多，且迟到时间不会超过一天以上，并且希望收到迟到的数据立刻就更新结果：INSERT INTO result SELECT * FROM tumble_window EMIT WITH DELAY ‘1’ MINUTE BEFORE WATERMARK, WITHOUT DELAY AFTER WATERMARK --窗口结束之后，每条到达的数据都输出</p>
+<p>tEnv.getConfig.setIdleStateRetentionTime(Time.days(1), Time.days(2))//min、max，只有Time.days(1)这个参数直接对window生效</p>
+<p>补充一下WITH DELAY '1’这种配置的周期触发策略（即DELAY大于0），最后都是由ProcessingTime系统时间触发：</p>
+<pre><code class="language-java">class WindowEmitStrategy{
+  private def createTriggerFromInterval(
+      enableDelayEmit: Boolean,
+      interval: Long): Option[Trigger[TimeWindow]] = {
+    if (!enableDelayEmit) {
+      None
+    } else {
+      if (interval &gt; 0) {
+       // 系统时间触发，小于wm的所有timer都执行onProcessingTime()
+        Some(ProcessingTimeTriggers.every(Duration.ofMillis(interval)))
+      } else {
+       // 为0则每条都触发
+        Some(ElementTriggers.every())
+      }
+    }
+  }
+}
+</code></pre>
+<p>5、Trigger类和结构关系 在源码中，Window Trigger的实现子类有10个左右，需要结合上一个小节的EMIT SQL能更容易理清他们之间的关系，这里简单介绍下：</p>
+<p><img src="_v_images/20210412125427432_1763085070" alt="图片" /></p>
+<ul>
+<li>
+<p>AfterEndOfWindow：这个就是没配置任何EMIT策略时，默认的EvenTime、ProcTime</p>
+</li>
+<li>
+<p>Window触发策略（即窗口结束后触发一次）</p>
+</li>
+<li>
+<p>EveryElement：即delay=0，在processElement()时直接触发，无论是在窗口结束之前或者窗口结束之后都触发，且不再注册timer</p>
+</li>
+<li>
+<p>AfterEndOfWindowNoLate：对应EMIT WITHOUT DELAY AFTER WATERMARK，窗口结束之前不输出，窗口结束之后无延迟输出</p>
+</li>
+<li>
+<p>AfterFirstElementPeriodic：对应WITH DELAY ‘1’ MINUTE BEFORE| AFTER WATERMARK，即按系统时间周期执行，由ProcessingTime系统时间周期触发</p>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="Flink-SQL-Join.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="Flink-SQL-Calcite.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="Flink-SQL-Join.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="Flink-SQL-Calcite.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

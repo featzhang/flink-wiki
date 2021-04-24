@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Flink runtime - guadazi-flink-wiki</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Flink 架构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Flink-runtime.html" class="active"><strong aria-hidden="true">1.1.</strong> Flink runtime</a></li><li class="chapter-item expanded "><a href="Flink-on-yarn.html"><strong aria-hidden="true">1.2.</strong> Flink-on-yarn</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.3.</strong> task chain</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.</strong> sharing slot group</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.5.</strong> task slot</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.6.</strong> CoLocationGroup</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.7.</strong> SlotSharingGroup</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.8.</strong> Flink state backend</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.9.</strong> Restart Strategies(重启策略)</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.10.</strong> Flink 2PC</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.11.</strong> Flink checkpoint与savepoint</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.12.</strong> Flink 反压</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.13.</strong> Flink 状态管理与TTL</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.14.</strong> Flink time</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.15.</strong> Flink timer</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.16.</strong> Flink window</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.17.</strong> Flink watermark</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.18.</strong> Flink-slot-sharing-group</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.19.</strong> Flink内存管理</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Flink API</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Flink-sink.html"><strong aria-hidden="true">2.1.</strong> Flink三种Sink模式: Append、Upsert和Retract</a></li><li class="chapter-item expanded "><a href="Flink-AsyncIO.html"><strong aria-hidden="true">2.2.</strong> Flink AsyncIO</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.3.</strong> Flink join: broadcast join、interval join、window join、cogroup</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Flink DataStream</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Flink-join.html"><strong aria-hidden="true">3.1.</strong> Flink join</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Flink SQL</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Flink-SQL-Join.html"><strong aria-hidden="true">4.1.</strong> Flink SQL join</a></li><li class="chapter-item expanded "><a href="Flink-SQL-Window.html"><strong aria-hidden="true">4.2.</strong> Flink window &amp; demo</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> Flink interval join</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> Flink temporal join</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.</strong> Flink broadcast join</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.6.</strong> Flink SQL join的状态管理</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.7.</strong> Flink SQL-window aggregate与group aggregate</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.8.</strong> Flink over window与TopN</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Flink SQL 原理</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Flink-SQL-Calcite.html"><strong aria-hidden="true">5.1.</strong> Calcite原理</a></li><li class="chapter-item expanded "><a href="Flink-SQL-codeGen.html"><strong aria-hidden="true">5.2.</strong> Flink SQL代码生成</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.3.</strong> Flink SQL原理与blink优化</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Flink metric</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Flink累加器和计数器:Accumulators &amp; Counters</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Flink CEP</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Flink Connectors</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> kudu connector</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> Flink devops</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">9.1.</strong> Flink-UI</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.2.</strong> Yarn、JM、TM配置与参数</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.3.</strong> 常见异常与解决方案</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.</strong> Flink实践</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">10.1.</strong> interval join实现outjoin</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.2.</strong> 双流join，一条流延迟</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.3.</strong> keyedState扩容</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.4.</strong> Flink-bloomfilter近似去重</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">guadazi-flink-wiki</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <hr />
+<p>title: &quot;Flink runtime&quot;
+layout: post
+date: 2021-01-15 19:47:00
+category: bigdata
+tags:</p>
+<ul>
+<li>Flink</li>
+</ul>
+<h2>share: false
+comments: true</h2>
+<h1 id="flink-runtime运行时"><a class="header" href="#flink-runtime运行时">Flink-runtime运行时</a></h1>
+<h2 id="概述"><a class="header" href="#概述">概述</a></h2>
+<p>其实这两个概念我们可以看作：资源共享链与资源共享组。当我们编写完一个Flink程序，从Client开始执行——&gt;JobManager——&gt;TaskManager——&gt;Slot启动并执行Task的过程中，会对我们提交的执行计划进行优化，其中有两个比较重要的优化过程是：任务链与处理槽共享组，前者是对执行效率的优化，后者是对内存资源的优化。</p>
+<h3 id="graph优化"><a class="header" href="#graph优化">Graph优化</a></h3>
+<p>在<code>StreamGraph</code>转换为JobGraph过程中，关键在于将多个 <code>StreamNode</code> 优化为一个 <code>JobVertex</code>，对应的 StreamEdge 则转化为 <code>JobEdge</code>，并且 <code>JobVertex</code> 和 <code>JobEdge</code> 之间通过 <code>IntermediateDataSet</code> （中间数据集）形成一个生产者和消费者的连接关系。每个<code>JobVertex</code>就是<code>JobManger</code>的一个任务调度单位（任务Task）。为了避免在这个过程中将关联性很强的几个<code>StreamNode</code>（算子）放到不同<code>JobVertex</code>（<code>Task</code>）中，从而导致因为<code>Task</code>执行产生的效率问题（数据交换（网络传输）、线程上下文切换），Flink会在<code>StreamGraph</code>转换为<code>JobGraph</code>过程中将可以优化的算子合并为一个算子链（也就是形成一个Task）。这样就可以把这条链上的算子放到一个线程中去执行，这样就提高了任务执行效率。</p>
+<h2 id="作业链task-chain"><a class="header" href="#作业链task-chain">作业链Task-chain</a></h2>
+<p><img src="https://gitee.com/averyzhang/pic-go/raw/master/img/20210423124550.png" alt="img" /></p>
+<ul>
+<li>
+<p>Chain：Flink会尽可能地将多个operator链接（chain）在一起形成一个task pipline。每个task pipline在一个线程中执行</p>
+</li>
+<li>
+<p>优点：<em>它能减少线程之间的切换，减少消息的序列化/反序列化，减少数据在缓冲区的交换，减少了延迟的同时提高整体的吞吐量。</em></p>
+</li>
+</ul>
+<p>StreamGraph转换为JobGraph过程中，实际上是逐条审查每一个StreamEdge和该SteamEdge两头连接的两个StreamNode的特性，来决定该StreamEdge两头的StreamNode是不是可以合并在一起形成算子链。这个判断过程flink给出了明确的规则，我们看一下StreamingJobGraphGenerator中的isChainable（）方法：</p>
+<p><img src="https://gitee.com/averyzhang/pic-go/raw/master/img/20210423124551.png" alt="img" /></p>
+<p>该方法返回true时两个端点才可以合并到一起，根据源码我们可以得出形成作业链的规则如下：</p>
+<ol>
+<li>上下游的并行度一致（槽一致）</li>
+<li>该节点必须要有上游节点跟下游节点；</li>
+<li>下游StreamNode的输入StreamEdge只能有一个）</li>
+<li>上下游节点都在同一个 slot group 中（下面会解释 slot group）</li>
+<li>下游节点的 chain 策略为 ALWAYS（可以与上下游链接，map、flatmap、filter等默认是ALWAYS）</li>
+<li>上游节点的 chain 策略为 ALWAYS 或 HEAD（只能与下游链接，不能与上游链接，Source默认是HEAD）</li>
+<li>上下游算子之间没有数据shuffle (数据分区方式是 forward)</li>
+<li>用户没有禁用 chain</li>
+</ol>
+<p>二、开启/禁用全局作业链</p>
+<p>用户能够通过禁用全局作业链的操作来关闭整个Flink的作业链，但是这个操作会影响到这个作业的执行情况，除非我们非常清楚作业的执行过程，否则不建议这么做：StreamExecutionEnvironment.disableOperatorChaining()。全局作业链关闭之后，如果想创建对应Operator的作业链，可以使用startNewChain()方法：someStream.filter(...).map(...).startNewChain().map(...)。注意该方法只对当前操作符及之后的操作符有效，所以上述代码只对两个map进行链条绑定。</p>
+<p>三、禁用局部作业链</p>
+<p>如果我们只想对某个算子执行禁用作业链，只需调用disableChaining（）方法：someSteam.map().disableChaining().filter()，该方法只会禁用当前算子的链条（上述代码中就是map），对其他算子操作不产生影响。</p>
+<h2 id="处理槽共享组出于某中目的将多个task放到同一个slot中执行"><a class="header" href="#处理槽共享组出于某中目的将多个task放到同一个slot中执行">处理槽共享组(出于某中目的将多个Task放到同一个slot中执行)</a></h2>
+<p>一、Task Slot</p>
+<p>TaskManager 是一个 JVM 进程，并会以独立的线程来执行一个task。为了控制一个 TaskManager 能接受多少个 task，Flink 提出了 <em>Task Slot</em> 的概念，通过 <em>Task Slot</em> 来定义Flink 中的计算资源。solt 对TaskManager内存进行平均分配，每个solt内存都相同，加起来和等于TaskManager可用内存，但是仅仅对内存做了隔离，并没有对cpu进行隔离。将资源 slot 化意味着来自不同job的task不会为了内存而竞争，而是每个task都拥有一定数量的内存储备。</p>
+<p>通过调整 task slot 的数量，用户可以定义task之间是如何相互隔离的。每个 TaskManager 有一个slot，也就意味着每个task运行在独立的 JVM 中。每个 TaskManager 有多个slot的话，也就是说多个task运行在同一个JVM中。而在同一个JVM进程中的task，可以共享TCP连接（基于多路复用）和心跳消息，可以减少数据的网络传输。也能共享一些数据结构，一定程度上减少了每个task的消耗。</p>
+<p>二、共享槽</p>
+<p>一个TaskManager中至少有一个插槽slot，每个插槽均分内存并且之间是内存隔离的，但是共享CPU。算子根据计算复杂度可以分为资源密集型与非资源密集型算子（可以认为有的算子计算时内存需求大，有些算子内存需求小）。现在有这么个情况：某个Job下的Tasks中既有资源密集型Task（A），又有非资源密集型Task（B），他们被分到不同的slot上，这就会产生一个问题，有的slot内存使用率大，有的slot内存使用率小，这样就很不公平，内存没有得到充分的利用。所以我们可以采用一个方案：将A、B放到同一个slot当中。</p>
+<p>默认情况下，Flink 允许subtasks共享slot，条件是它们都来自同一个Job的不同task的subtask。结果可能一个slot持有该job的整个pipeline。允许槽共享，会有以下两个方面的好处：</p>
+<ul>
+<li>flink计算一个job所需slot数量时，只需要确定所其最大并行度（前提，保持默认SlotSharingGroup），而不用计算每一个任务的并行度的总和；</li>
+<li>能更好的利用资源，如果没有solt共享，那些资源需求不大的map子任务将和资源需求更大的window占用相同的资源。</li>
+</ul>
+<p>Flink相同资源组里的多个Task可以共享一个Slot资源槽。具体共享机制又分两种：</p>
+<p><strong>1、CoLocationGroup:</strong> 强制将 subtasks 放到同一个 slot 中，是一种硬约束</p>
+<ul>
+<li>保证把JobVertices的第n个运行实例和其他相同组内的JobVertices第n个实例运作在相同的slot中（所有的并行度相同的subTasks运行在同一个slot ）；</li>
+<li>主要用于迭代流(训练机?学习模型) ，用来保证迭代头与迭代尾的第i个subtask能被调度到同一个TaskManager上。</li>
+</ul>
+<p><strong>2、SlotSharingGroup:</strong> 允许不同的JobVertices的部署在相同的Slot中，但这是一种宽约束，只是尽量做到不能完全保证。</p>
+<ul>
+<li>SlotSharingGroup是Flink中用来实现slot共享的类，它尽可能地让subTasks共享一个slot；</li>
+<li>保证同一个group的并行度相同的sub-tasks 共享同一个slots ；</li>
+<li>算子的默认group为default（即默认一个job下的subtask都可以共享一个slot）</li>
+<li>为了防止不合理的共享，用户可以强制指定operator的共享组，比如： someStream.filter(...).slotSharingGroup(&quot;group1&quot;)；就强制指定了filter的slot共享组为group1；</li>
+<li>要想确定一个未做SlotSharingGroup设置的算子的group是什么，可以根据上游算子的 group 和自身是否设置 group共同确定；</li>
+<li>适当设置可以减少每个slot运行的线程数，从而整体上减少机?的负载。</li>
+</ul>
+<p>【参考文献】</p>
+<ol>
+<li><a href="https://www.infoq.cn/article/RWTM9o0SHHV3Xr8o8giT">Apache Flink进阶一: Runtime核心机制剖析</a></li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+                            <a rel="next" href="Flink-on-yarn.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+                    <a rel="next" href="Flink-on-yarn.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
